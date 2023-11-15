@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +34,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/ricardo', function () {
     return view('ricardo');
 });
+
+Route::resource('categorias', CategoriaController::class);
+
+Route::resource('articulos', ArticuloController::class);
 
 require __DIR__.'/auth.php';
