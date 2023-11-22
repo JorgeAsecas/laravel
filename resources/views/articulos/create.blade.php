@@ -1,6 +1,7 @@
-<x-guest-layout>
+<x-app-layout>
     <form method="POST" action="{{ route('articulos.store') }}">
         @csrf
+
 
         <!-- Nombre -->
         <div>
@@ -15,7 +16,16 @@
         </div>
         <div>
             <x-input-label for="categoria_id" :value="'Categoria del articulo'" />
-            <x-text-input id="categoria_id" class="block mt-1 w-full" type="text" name="categoria_id" :value="old('categoria_id')" required autofocus autocomplete="categoria_id" />
+            <select id="categoria_id" class="'block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'" name="categoria_id" required>
+                @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}">
+                    {{$categoria->nombre}}
+
+                </option>
+
+                @endforeach
+
+            </select>
             <x-input-error :messages="$errors->get('categoria_id')" class="mt-2" />
         </div>
 
@@ -30,4 +40,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-app-layout>

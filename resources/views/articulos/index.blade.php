@@ -1,5 +1,5 @@
-<x-guest-layout class="">
-    <div class="relative overflow-x-auto w-100px mx-auto shadow-md sm:rounded-lg">
+<x-app-layout >
+    <div class="relative overflow-x-auto w-300 mx-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -21,10 +21,12 @@
                             {{ $articulo->denominacion }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $articulo->precio }}
+                            {{ dinero($articulo->precio) }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $articulo->categoria_id;}}
+                            <a href="{{ route('categorias.edit', ['categoria' => $articulo->categoria]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {{ $articulo->categoria->nombre;}}
+                            </a>
                         </th>
                         <td class="px-6 py-4">
                             <a href="{{ route('articulos.edit', ['articulo' => $articulo]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -53,4 +55,4 @@
         </form>
 
     </div>
-</x-guest-layout>
+</x-app-layout>

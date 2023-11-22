@@ -70,7 +70,14 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        $categoria->delete();
+        if ($categoria->articulos->isEmpty()) {
+            $categoria->delete();
+
+        } else {
+
+            session()->flash('error', 'La categoria tiene articulos');
+        };
+
         return redirect()->route('categorias.index');
     }
 }

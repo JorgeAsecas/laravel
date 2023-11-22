@@ -28,6 +28,12 @@
             @endif
 
             <!-- Page Content -->
+            @if (session()->has('error'))
+                {{ session()->get('error') }}
+            @endif
+
+
+
             <main>
                 {{ $slot }}
             </main>

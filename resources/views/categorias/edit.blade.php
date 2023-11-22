@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <form method="POST" action="{{ route('categorias.update', ['categoria' => $categoria]) }}">
         @csrf
         @method('PUT')
@@ -21,4 +21,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-app-layout>
