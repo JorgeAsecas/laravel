@@ -31,9 +31,14 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
 
+        $validated = $request->validate([
+            'nombre' => 'required|max:255',
+        ]);
+
         $categoria = new Categoria();
         $categoria->nombre = $request->input('nombre');
         $categoria->save();
+        session()->flash('success', 'La categoría se ha creado correctamente.');
         return redirect()->route('categorias.index');
     }
 
@@ -72,12 +77,9 @@ class CategoriaController extends Controller
     {
         if ($categoria->articulos->isEmpty()) {
             $categoria->delete();
-
         } else {
-
-            session()->flash('error', 'La categoria tiene articulos');
-        };
-
+            session()->flash('error', 'La categoría tiene artículos.');
+        }
         return redirect()->route('categorias.index');
     }
 }
